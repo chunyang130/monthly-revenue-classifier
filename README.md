@@ -62,11 +62,11 @@ python3 classify.py \
   --history sample_data/history_2026.09.xlsx \
   --sources sample_data/sources.xlsx \
   --override 鄭同學=親友 \
-  --out output/2026.10_分類草稿.xlsx
+  --out output/2026.10_draft.xlsx
 
-# 3. 人工補完黃底後（範例已補好：sample_data/2026.10_已分類_範例.xlsx），做交叉分析
+# 3. 人工補完黃底後（範例已補好：sample_data/2026.10_classified_sample.xlsx），做交叉分析
 python3 analyze.py \
-  --input sample_data/2026.10_已分類_範例.xlsx \
+  --input sample_data/2026.10_classified_sample.xlsx \
   --outdir output/analysis --title 2026.10 \
   --judge S015=通路 \
   --weeks 10/01-10/09,10/10-10/16,10/17-10/23,10/24-10/31
@@ -75,7 +75,7 @@ python3 analyze.py \
 分類執行結果：
 
 ```
-完成: output/2026.10_分類草稿.xlsx
+完成: output/2026.10_draft.xlsx
 新人員: ['新進員']
 待填: {('北區轉入', '來源'): 1, ('北區轉入', '單位'): 1, ('南區轉出', '來源'): 1}
 ```
@@ -86,7 +86,7 @@ python3 analyze.py \
 勾稽 通過 ['402,000', '402,000', '402,000']
 ```
 
-完整報告範例見 [examples/2026.10_交叉分析報告.md](examples/2026.10_交叉分析報告.md)。
+完整報告範例見 [examples/2026.10_report.md](examples/2026.10_report.md)。
 
 ## 檔案說明
 

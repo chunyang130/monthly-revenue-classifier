@@ -2,7 +2,7 @@
 """產生示範用的假資料（全部虛構，格式比照系統匯出檔）。
 
 產出到 sample_data/：
-  raw_北區轉入.xlsx、raw_北區轉出.xlsx、raw_南區轉入.xlsx、raw_南區轉出.xlsx  ← 系統匯出、未分類
+  raw_north_in.xlsx、raw_north_out.xlsx、raw_south_in.xlsx、raw_south_out.xlsx  ← 系統匯出、未分類（北區／南區 × 轉入／轉出）
   history_2026.09.xlsx   ← 上個月已分類好的檔（提供人員對照與學員前次來源）
   sources.xlsx           ← 名單來源表（各月諮詢明細）
 
@@ -15,6 +15,7 @@ OUT = 'sample_data'
 HDR_IN = ['轉入區域', '轉入單位', '單據編號', '學員編號', '學員姓名', '課程編號', '課程名稱', '績效人員姓名', '轉入日期', '轉入金額']
 HDR_OUT = ['轉出區域', '轉出單位', '單據編號', '學員編號', '學員姓名', '課程編號', '課程名稱', '績效人員姓名', '轉出日期', '轉出金額']
 UNIT = {'北區': '北區本部', '南區': '南區本部'}
+FILE = {'北區轉入': 'raw_north_in', '北區轉出': 'raw_north_out', '南區轉入': 'raw_south_in', '南區轉出': 'raw_south_out'}
 
 COURSES = {
     'C2026ENG000101': 'TOEIC 多益衝刺班',
@@ -73,7 +74,7 @@ def main():
     os.makedirs(OUT, exist_ok=True)
     for key, rows in DATA.items():
         hdr = HDR_IN if key.endswith('轉入') else HDR_OUT
-        write_raw(key, rows, hdr, None).save(os.path.join(OUT, f'raw_{key}.xlsx'))
+        write_raw(key, rows, hdr, None).save(os.path.join(OUT, f'{FILE[key]}.xlsx'))
 
     # 上個月已分類的歷史檔：提供「黃同學 前次來源＝續報」
     wb = openpyxl.Workbook()
